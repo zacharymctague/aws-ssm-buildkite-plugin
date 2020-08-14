@@ -1,6 +1,6 @@
 name: aws-ssm
 description: Inject SSM Parameters as environment variables into your build step.
-author: https://github.com/linktr.ee
+author: https://github.com/blstrco
 public: false
 requirements:
   - aws

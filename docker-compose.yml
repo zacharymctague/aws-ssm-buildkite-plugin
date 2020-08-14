@@ -6,7 +6,6 @@ services:
       - ".:/plugin:ro"
   lint:
     image: buildkite/plugin-linter
-    # command: ["--id", "a-github-user/file-counter"]
-    command: ["--id", "blstrco/aws-ssm"]
+    command: ["--id", "zacharymctague/aws-ssm"]
     volumes:
       - ".:/plugin:ro"
