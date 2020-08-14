@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -e
+set -o pipefail
+set -u
+
+main() {
+    plugin_prefix=BUILDKITE_PLUGIN_AWS_PARAMETERS_
+    
+    while read -r line; do
+        environment_name=$(echo "$line" | cut -d '=' -f 1 | sed "s/^${plugin_prefix}//")
+        parameter_key=$(echo "$line" | cut -d '=' -f 2-)
+        
+        parameter_value=$(aws ssm get-parameter \
+            --name "$parameter_key \
+            --with-decryption \
+            --output text \
+            --query Parameter.Value"
+        )
+        
+        export "${environment_name}=${parameter_value}"
+        
+        echo "Exported ${environment_name} as value of parameter ${parameter_key}"
+        
+    done < <(env | grep "^${plugin_prefix}")
+}
+
+main
