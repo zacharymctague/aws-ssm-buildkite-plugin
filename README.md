@@ -10,7 +10,7 @@ Add the following to your `pipeline.yml`:
 steps:
   - command: echo "Param One equals \$PARAMETER_ONE"
     plugins:
-      - zacharymctague/aws-ssm:
+      - zacharymctague/aws-ssm#v1.0.0:
           parameters:
             PARAMETER_ONE: /my/parameter
             PARAMETER_TWO: /my/other/parameter
