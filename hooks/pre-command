@@ -12,15 +12,15 @@ main() {
         parameter_key=$(echo "$line" | cut -d '=' -f 2-)
         
         parameter_value=$(aws ssm get-parameter \
-            --name "$parameter_key \
+            --name "$parameter_key" \
             --with-decryption \
             --output text \
-            --query Parameter.Value"
+            --query Parameter.Value
         )
         
         export "${environment_name}=${parameter_value}"
         
-        >&2 echo "Exported ${environment_name} as value of parameter ${parameter_key}"
+        echo "Exported ${environment_name} as value of parameter ${parameter_key}"
         
     done < <(env | grep "^${plugin_prefix}")
 }
