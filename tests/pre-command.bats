@@ -6,7 +6,7 @@ load '/usr/local/lib/bats/load.bash'
 # export AWS_STUB_DEBUG=/dev/tty
 
 @test "Exports parameters from SSM Store" {
-    export BUILDKITE_PLUGIN_AWS_PARAMETERS_PARAMETER_ONE=/my/parameter
+    export BUILDKITE_PLUGIN_AWS_SSM_PARAMETERS_PARAMETER_ONE=/my/parameter
 
     stub aws "ssm : echo MY_PARAM_VALUE"
 
